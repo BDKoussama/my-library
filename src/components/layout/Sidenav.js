@@ -2,7 +2,7 @@ import React from 'react'
 
 const Sidenav = () => {
   return (
-    			<nav className="absolute lg:relative lg:flex lg:text-sm bg-indigo-darker lg:bg-transparent pin-l pin-r py-4 px-6 lg:pt-10 lg:pl-12 lg:pr-6 -mt-1 lg:mt-0 overflow-y-auto lg:w-1/5 lg:border-r z-40 hidden">
+    		<nav className="absolute lg:relative lg:flex lg:text-sm bg-indigo-darker lg:bg-transparent pin-l pin-r py-4 px-6 lg:pt-10 lg:pl-12 lg:pr-6 -mt-1 lg:mt-0 overflow-y-auto lg:w-1/5 lg:border-r z-40 hidden">
 				<ul className="list-reset mb-8 w-full">
 					<li className="ml-2 mb-4 flex">
 						<img src="./images/home-default.svg" alt="home-icon" className="w-4 h-4 mr-2"/>
@@ -33,7 +33,7 @@ const Sidenav = () => {
 						</ul>
 					</li>
 					<li className="ml-2 mb-4 flex">
-						<img src="./images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2"/>
+						<img src="./images/wishlist-default.svg" alt="wishlist-icon" className="w-4 h-4 mr-2"/>
 						<div className="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">Wishlist</div>
 					</li>
 					<li className="ml-2 mb-4 flex lg:hidden">

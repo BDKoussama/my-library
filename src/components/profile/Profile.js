@@ -5,7 +5,7 @@ const Profile = () => {
     	<div className="hidden absolute pin-b z-10 lg:relative lg:block w-full lg:w-1/5 bg-grey-lighter-2 px-6 pt-10" id="profile">
             <div className="flex items-center mb-6">
                 <svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg"  id="avatar">
-                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                         <g transform="translate(-1178.000000, -87.000000)">
                             <g transform="translate(1159.000000, 0.000000)">
                                 <g transform="translate(0.000000, 87.000000)">

@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar/>
-        <div class="flex">
+        <div className="flex">
             <Sidenav/>
             <Main/>
             <Profile/>
