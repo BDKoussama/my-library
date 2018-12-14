@@ -1,18 +1,32 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import {profileToggle} from '../../store/actions/navActions';
+import {resetStats} from '../../store/actions/navActions';
+import {NavLink} from 'react-router-dom';
 
 class Sidenav extends Component{
+
 	state = {
 		toggleCat : false 
 	}
+
 	handleClick = () => {
 		this.setState({
 			toggleCat : !this.state.toggleCat
 		})
 	}
+
+	homePage = () => {
+		this.props.resetStats();
+	}
+
+	toggleProfile = () => {
+		this.props.profileToggle();
+	}
+
 	render(){
 	const { toggle } = this.props ; 
-	const {toggleCat} = this.state;
+	const { toggleCat } = this.state;
 	let className = 'absolute lg:relative lg:flex lg:text-sm bg-indigo-darker lg:bg-transparent pin-l pin-r py-4 px-6 lg:pt-10 lg:pl-12 lg:pr-6 -mt-1 lg:mt-0 overflow-y-auto lg:w-1/5 lg:border-r z-40';
 	className += toggle ? '' : ' hidden';
 		return (
@@ -20,7 +34,9 @@ class Sidenav extends Component{
 				<ul className="list-reset mb-8 w-full">
 					<li className="ml-2 mb-4 flex">
 						<img src="./images/home-default.svg" alt="home-icon" className="w-4 h-4 mr-2"/>
-						<div className="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">Home</div>
+						<div className="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger" onClick= { this.homePage }>
+							Home
+						</div>
 					</li>
 					<li className="ml-2 mb-4">
 						<div className="flex" id="sidenav-categories-trigger" onClick={this.handleClick}>
@@ -52,7 +68,9 @@ class Sidenav extends Component{
 					</li>
 					<li className="ml-2 mb-4 flex lg:hidden">
 						<img src="./images/profile-default.svg" alt="profile-icon" className="w-4 h-4 mr-2"/>
-						<div className="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium" id="mobile-profile-trigger">Profile</div>
+						<div className="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium" id="mobile-profile-trigger" onClick = {this.toggleProfile}>
+							 Profile
+						</div>
 					</li>
 				</ul>
 			</nav>
@@ -63,7 +81,14 @@ class Sidenav extends Component{
 const mapStateToProps = (state) => {
 
 	return {
-		toggle : state.nav.toggle 
+		toggle : state.nav.toggle
 	}
 }
-export default connect(mapStateToProps,null)(Sidenav)
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		profileToggle : () => dispatch(profileToggle()),
+		resetStats : () => dispatch(resetStats())
+	}
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Sidenav)

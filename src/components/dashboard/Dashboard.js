@@ -1,12 +1,10 @@
 import React from 'react'
-import Navbar from '../layout/Navbar';
 import Sidenav from '../layout/Sidenav';
 import Profile from '../profile/Profile';
 import Main from '../layout/Main';
 const Dashboard = () => {
   return (
     <div>
-      <Navbar/>
         <div className="flex">
             <Sidenav/>
             <Main/>

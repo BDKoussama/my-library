@@ -1,8 +1,14 @@
-import React from 'react'
+import React,{Component} from 'react'
+import { connect } from 'react-redux';
 
-const Profile = () => {
-  return (
-    	<div className="hidden absolute pin-b z-10 lg:relative lg:block w-full lg:w-1/5 bg-grey-lighter-2 px-6 pt-10" id="profile">
+class  Profile extends Component {
+
+
+  render(){
+    const { toggleProfile } = this.props ;
+    const style = { top : '63px' }
+    return (
+    	<div className= { `${ toggleProfile  ? '' : 'hidden' } absolute pin-b z-10 lg:relative lg:block w-full lg:w-1/5 bg-grey-lighter-2 px-6 pt-10` } id="profile" style={ toggleProfile ? style : null }>
             <div className="flex items-center mb-6">
                 <svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg"  id="avatar">
                     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -45,6 +51,12 @@ const Profile = () => {
             </div>
         </div>
   )
+  }
 }
-
-export default Profile
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        toggleProfile: state.nav.toggleProfile
+    }
+}
+export default connect(mapStateToProps,null)(Profile)

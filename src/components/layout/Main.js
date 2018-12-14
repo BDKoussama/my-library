@@ -4,10 +4,11 @@ import Desktopstats from '../content/Desktopstats';
 import Library from '../content/Library';
 import Picks from '../content/Picks';
 import Tabs from '../Tabs/Tabs';
-
-const Main = () => {
+import {connect} from 'react-redux'
+const Main = (props) => {
+  const {toggle} = props ;
   return (
-    <div className="flex flex-1 flex-col md:px-6 pt-10" id="content">
+    <div className={`${ toggle ? 'hidden' : 'flex' } flex-1 flex-col md:px-6 pt-10`} id="content">
             {/* --- Title ---*/}
 				<Title/>
             {/* Desktop Stats*/}
@@ -24,5 +25,9 @@ const Main = () => {
 		</div>
   )
 }
-
-export default Main
+const mapStatToProps = (state) => {
+    return {
+        toggle : state.nav.toggleProfile
+    }
+}
+export default connect(mapStatToProps,null)(Main)
