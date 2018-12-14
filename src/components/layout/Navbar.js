@@ -1,15 +1,13 @@
 import React , {Component} from 'react'
+import {connect} from 'react-redux' ;
+import {toggleMenu} from '../../store/actions/navActions';
 
 class Navbar extends Component {
-    state = {
-        toggle : false
-    }
     handleClick = () => {
-        this.setState({
-            toggle : !this.state.toggle
-        })
+        this.props.toggleMenu();
     }
   render(){
+      const { toggle } = this.props
     return (
         <div className="bg-indigo-darker text-center p-4 px-6 flex items-center">
             <div className="hidden lg:block lg:w-1/4 xl:w-1/5 pr-8">
@@ -18,7 +16,7 @@ class Navbar extends Component {
                 </a>
             </div>
             <div className="lg:hidden pr-3" id="mobile-nav-trigger">
-                <div className= { this.state.toggle ? "toggle p-2 block open " :  "toggle p-2 block " } onClick={ this.handleClick } ><span></span></div>
+                <div className= { toggle ? "toggle p-2 block open " :  "toggle p-2 block " } onClick={ this.handleClick } ><span></span></div>
             </div>
             <div className="flex flex-grow items-center lg:w-3/4 xl:w-4/5">
                 <span className="relative w-full">
@@ -36,4 +34,16 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar
+const mapStateToProps = (state) => {
+    return {
+        toggle : state.nav.toggle
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleMenu : () => dispatch(toggleMenu())
+    }
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(Navbar)
