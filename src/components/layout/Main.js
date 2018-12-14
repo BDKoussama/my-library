@@ -10,8 +10,9 @@ const Main = () => {
     <div className="flex flex-1 flex-col md:px-6 pt-10" id="content">
             {/* --- Title ---*/}
 				<Title/>
-            {/* Desktop Stats  TAB 1*/}
+            {/* Desktop Stats*/}
 				<Desktopstats/>
+            { /* Tabs */ }
         <Tabs>
           <div label="Library">
             <Library/>
