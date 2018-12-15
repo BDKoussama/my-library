@@ -1,5 +1,5 @@
 export const toggleMenu = () => {
-    return (dispatch , getState  ) => {
+    return (dispatch , getState , {axios} ) => {
         dispatch({type : 'MENU_ICON_TOGGLED'});
     }
 }
@@ -15,3 +15,4 @@ export const resetStats = () => {
         dispatch({ type : 'RESET_STATE' });
     }
 }
+
