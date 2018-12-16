@@ -5,12 +5,18 @@ export const fetchBooks = (title) => {
         .then((response) => {
             for (var i = 0; i < response.data.items.length; i++) {
                 var item = response.data.items[i];
-                let { title , authors , imageLinks } = item.volumeInfo ; 
+                console.log(item);
+                let { title , authors , imageLinks , description , language , pageCount , publisher } = item.volumeInfo ; 
                 data[i] = { 
                             id : item.id,
                             title , 
                             author : authors ? authors[0] : 'Unknow Author',
-                            img :    imageLinks ? imageLinks.smallThumbnail : false 
+                            img :    imageLinks ? imageLinks.smallThumbnail : false,
+                            thumbnail : imageLinks ? imageLinks.thumbnail : false,
+                            description : description ? description : 'No description',
+                            language,
+                            pageCount,
+                            publisher
                          } ;
                 }
             dispatch({type : 'FETCH_DATA_SUCCESS' , payload : title === '' ? [] : data})
@@ -19,3 +25,4 @@ export const fetchBooks = (title) => {
         })
     }
 }
+

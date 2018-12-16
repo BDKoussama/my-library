@@ -15,7 +15,7 @@ class Search extends Component {
     handleInputChange = (e) => {
         this.props.fetchBooks(e.target.value);
     }
-    
+
     handleClick() {
         if (!this.state.open) {
           // attach/remove event handler
@@ -46,7 +46,7 @@ class Search extends Component {
                 { this.state.open && (
                     <ul className='search-result' >
                         { books && books.map(item => {
-                            return <Searchitem book={ item } key={item.id}/>
+                            return <Searchitem book={ item } key={item.id} />
                         }) }
                     </ul> 
                 )}

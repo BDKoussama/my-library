@@ -19259,7 +19259,11 @@ table {
     padding: 0.4em 1em;
     margin: 0.2em 0;
     display: flex;
+    cursor: pointer;
     flex-direction: row ;
+}
+.search-item:hover{
+    background : #2f365f;
 }
 .search-item-info{
   padding : 0.2em 0em ;
@@ -19267,9 +19271,35 @@ table {
 .thumbnail-extra-small{
     height: 40px;
     width : 30px ;
+    display: flex;
     margin-right: 0.5em;
 }
 
 .search-book-title ,.search-book-author {
     color: #dae1e7 ;
+}
+
+.book-detail{
+  width: 100%;
+  margin: 1em 0;
+  display: flex;
+  flex-direction: row ;
+}
+.book-info {
+  width: 100%;
+}
+
+.book-thumbnail {
+  height: 200px ; 
+  width: 200px ;
+  margin-right: 2em;
+  display: flex ;
+}
+.book-description{
+  padding: 1em 0;
+  line-height: 1.5em;
+}
+
+.book-info button{
+  margin: 0.4em 1em 0 0  ;
 }
