@@ -19282,24 +19282,47 @@ table {
 .book-detail{
   width: 100%;
   margin: 1em 0;
-  display: flex;
-  flex-direction: row ;
+  padding: 0 0.5em;
 }
+
 .book-info {
   width: 100%;
 }
 
 .book-thumbnail {
   height: 200px ; 
-  width: 200px ;
-  margin-right: 2em;
+  width: 150px;
   display: flex ;
+  float:left;
+  margin-bottom: 0.3em;
 }
 .book-description{
   padding: 1em 0;
   line-height: 1.5em;
+  text-align: justify;
 }
 
 .book-info button{
   margin: 0.4em 1em 0 0  ;
+}
+
+.alert-msg{
+  width: 100%;
+  border-radius: 2px;
+  padding: 1em;
+  margin: 1.5em 0; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center ; 
+}
+.alert-msg button {
+  margin: 0 ; 
+}
+.success{
+  color : #579182;
+  background: #84DCC6;
+}
+.danger {
+  background : #ea6f71;
 }

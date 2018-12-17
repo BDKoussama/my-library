@@ -8,8 +8,7 @@ import {connect} from 'react-redux'
 import BookDetail from '../content/BookDetail';
 
 const Main = (props) => {
-  const {toggle , book} = props ;
-  console.log(book)
+  const {toggle , book , library } = props ;
   return (
     <div className={`${ toggle ? 'hidden' : 'flex' } flex-1 flex-col md:px-6 pt-10`} id="content">
             {/* --- Title ---*/}
@@ -19,7 +18,7 @@ const Main = (props) => {
             { /* Tabs */ }
         <Tabs>
           <div label="Library">
-            <Library/>
+          { library && <Library library = { library }/> }
           </div>
           <div label="Picks for you">
             <Picks/>
@@ -34,7 +33,8 @@ const Main = (props) => {
 const mapStatToProps = (state) => {
     return {
         toggle : state.nav.toggleProfile,
-        book : state.book.selectedBook
+        book : state.book.selectedBook,
+        library: state.library.library
     }
 }
 export default connect(mapStatToProps,null)(Main)

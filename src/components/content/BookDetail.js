@@ -1,13 +1,29 @@
 import React,{Component} from 'react'
 import { connect } from 'react-redux';
-import {addBookToLibrary} from '../../store/actions/libraryActions';
+import {addBookToLibrary ,closeAlert } from '../../store/actions/libraryActions';
 
 class BookDetail extends Component { 
-    addToLibrary = () => {
-        this.props.addBookToLibrary();
+
+    constructor(){
+        super();
+        this.state = {
+            alertMessage : ''
+        }
     }
+
+    addToLibrary = (e) => {
+        this.props.addBookToLibrary(e.target.id);
+        this.setState({
+            alertMessage : e.target.id
+        })
+    }
+
+    handleCloseAlert= () => {
+        this.props.closeAlert();
+    }
+
   render(){
-    const { selectedBook } = this.props ;
+    const { selectedBook , alert ,alreadyExistAlert } = this.props ;
     return (
         <div className='book-detail' data-id = { selectedBook.id }>
             <div className='book-thumbnail'>
@@ -19,16 +35,35 @@ class BookDetail extends Component {
                 </h4>
                 <p className='book-author text-grey-dark mt-2'>{selectedBook.author}</p>
                 <p className='book-description text-sm text-indigo-darkest '> { selectedBook.description } </p>
-                <button onClick={ this.addToLibrary } className="bg-indigo-dark hover:bg-indigo-darker text-white text-sm py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">Add to Library</button>
-                <button className="bg-indigo-dark hover:bg-indigo-darker text-white text-sm py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">Add to Wishlist</button>
+                <button onClick={ this.addToLibrary } id='library' className="bg-indigo-dark hover:bg-indigo-darker text-white text-sm py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">Add to Library</button>
+                <button onClick={ this.addToLibrary } id='whishlist' className="bg-indigo-dark hover:bg-indigo-darker text-white text-sm py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">Add to Wishlist</button>
+                { alert && 
+                <div className='alert-msg success'>
+                    <p><strong>{selectedBook.title}</strong> Added to { this.state.alertMessage } .</p>
+                    <button type="button" className="close"  onClick={this.handleCloseAlert}> &times; </button>
+                </div> }
+                {   alreadyExistAlert &&
+                <div className='alert-msg danger'>
+                    <p><strong>{selectedBook.title}</strong> Already added to { this.state.alertMessage } .</p>
+                    <button type="button" className="close"  onClick={this.handleCloseAlert}> &times; </button>
+                </div>
+                }
             </div>
         </div>
       )
   }
 }
-const mapDispatchToProps = (dispatch) => {
-    return{
-        addBookToLibrary: () => dispatch(addBookToLibrary())
+const mapStateToProps = ( state ) => {
+    return {
+        alert : state.library.alert,
+        alreadyExistAlert : state.library.alreadyExistAlert  
     }
 }
-export default connect(null,mapDispatchToProps)(BookDetail) ;
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        addBookToLibrary: (list) => dispatch(addBookToLibrary(list)),
+        closeAlert: () => dispatch(closeAlert())
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(BookDetail) ;
