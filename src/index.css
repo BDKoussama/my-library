@@ -19326,3 +19326,11 @@ table {
 .danger {
   background : #ea6f71;
 }
+
+.book-thumbnail-picks {
+    height: 150px;
+    width: 100px;
+    display: flex;
+    float: left;
+    margin-bottom: 0.3em; 
+  }

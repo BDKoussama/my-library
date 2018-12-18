@@ -1,7 +1,7 @@
 export const fetchBooks = (title) => {
     return (dispatch , getState , {axios}) => {
         let data = [];
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title}&maxResults=40`)
         .then((response) => {
             for (var i = 0; i < response.data.items.length; i++) {
                 var item = response.data.items[i];
@@ -21,7 +21,7 @@ export const fetchBooks = (title) => {
                 }
             dispatch({type : 'FETCH_DATA_SUCCESS' , payload : title === '' ? [] : data})
         }).catch((err)=>{
-            console.log(err)
+            dispatch({type : 'FETCH_DATA_SUCCESS' , payload : err });
         })
     }
 }

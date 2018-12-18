@@ -15,7 +15,9 @@ class Search extends Component {
     handleInputChange = (e) => {
         this.props.fetchBooks(e.target.value);
     }
-
+    test = () => {
+        console.log('Clicked load more ...') ; 
+    }
     handleClick() {
         if (!this.state.open) {
           // attach/remove event handler
@@ -48,6 +50,12 @@ class Search extends Component {
                         { books && books.map(item => {
                             return <Searchitem book={ item } key={item.id} />
                         }) }
+                       { 
+                        books &&  
+                        <li className = 'search-item'>
+                            <p className='text-grey-dark' onClick={this.test} >Load more ...</p>
+                        </li>
+                        }
                     </ul> 
                 )}
                 <div className="absolute search-icon" style= { { top: '.5rem', left: '.8rem'} }>
