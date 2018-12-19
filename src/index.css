@@ -19294,6 +19294,7 @@ table {
   width: 150px;
   display: flex ;
   float:left;
+  position: relative;
   margin-bottom: 0.3em;
 }
 .book-description{
@@ -19326,7 +19327,6 @@ table {
 .danger {
   background : #ea6f71;
 }
-
 .book-thumbnail-picks {
     height: 150px;
     width: 100px;
@@ -19334,3 +19334,34 @@ table {
     float: left;
     margin-bottom: 0.3em; 
   }
+
+.wishlist .thumbnail-extra-small {
+   float : left ; 
+   margin: 0.3em 0.3em 0 0 ;
+   position: relative;
+}
+.remove-item {
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  top: -10%;
+  left: 60%;
+  border-radius: 50%;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+  color: #fbfbfb;
+}
+
+.remove-item-big {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: -5%;
+  left: 80%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fbfbfb;
+}

@@ -10,7 +10,7 @@ class Navbar extends Component {
     }
 
     render(){
-        const { toggle , books} = this.props;
+        const { toggle , books , fetchError} = this.props;
         
         return (
             <div className="bg-indigo-darker text-center p-4 px-6 flex items-center">
@@ -23,7 +23,7 @@ class Navbar extends Component {
                     <div className= { toggle ? "toggle p-2 block open " :  "toggle p-2 block " } onClick={ this.handleClick } ><span></span></div>
                 </div>
                 {/* Search Component */}
-                <Search books={books}/>
+                <Search books={books} err={fetchError}/>
             </div>
         )
     }
@@ -32,7 +32,9 @@ class Navbar extends Component {
 const mapStateToProps = (state) => {
     return {
         toggle : state.nav.toggle,
-        books : state.search.books
+        books : state.search.books,
+        fetchError : state.search.fetchError
+
     }
 }
 

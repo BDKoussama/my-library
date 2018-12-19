@@ -12,7 +12,7 @@ class Tab extends Component {
     let className = 'no-underline inline-block border-indigo pb-2 px-2 text-sm text-indigo-darkest hover:cursor-pointer js-tab relative';
     className +=  activeTab === label ? ' active' : '';
     return (
-      <div className={className} onClick={onClick}> {label} </div>
+      <div className={className} onClick={onClick}> {label} <span className="text-indigo text-xs">(7)</span> </div>
     );
   }
 }

@@ -18,6 +18,18 @@ const libraryReducer = (state = { library : [] , wishlist : [] , alert:false , a
             alert : false,
             alreadyExistAlert : false
         }
+        case 'DELETE_BOOK_FROM_LIBRARY':
+            return {
+                ...state,
+                library : state.library.filter(item => item.id !== action.id )
+            };
+        break;
+        case 'DELETE_BOOK_FROM_WISHLIST':
+        return {
+            ...state,
+            wishlist : state.wishlist.filter(item => item.id !== action.id )
+        };
+        break;
     break;
         default:
         return state ; 

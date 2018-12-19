@@ -16,7 +16,7 @@ const Main = (props) => {
             {/* Desktop Stats*/}
 				{ book && <BookDetail selectedBook = { book }/>}
             { /* Tabs */ }
-        <Tabs>
+        <Tabs >
           <div label="Library">
           { library && <Library library = { library }/> }
           </div>
@@ -36,6 +36,6 @@ const mapStatToProps = (state) => {
         book : state.book.selectedBook,
         library: state.library.library,
         search: state.search.books
-    }
+          }
 }
 export default connect(mapStatToProps,null)(Main)

@@ -9,14 +9,17 @@ class Search extends Component {
         super();
         this.handleClick = this.handleClick.bind(this);
         this.handleOutsideClick = this.handleOutsideClick.bind(this);
-        this.state = { open : false }
+        this.state = { 
+                open : false , 
+                inputValue : ''
+                         }
     }
 
     handleInputChange = (e) => {
         this.props.fetchBooks(e.target.value);
     }
-    test = () => {
-        console.log('Clicked load more ...') ; 
+    test = (e) => {
+        this.props.fetchBooks(this.state.inputValue, this.props.books.length);
     }
     handleClick() {
         if (!this.state.open) {
@@ -40,14 +43,14 @@ class Search extends Component {
     }
 
   render() {
-    const { books }= this.props ;
+    const { books , err }= this.props ;
     return (
         <div className="flex flex-grow items-center lg:w-3/4 xl:w-4/5" ref={node => { this.node = node }} >
             <span className="relative w-full">
                 <input type="text" placeholder="Search" id="search" onClick={this.handleClick} onChange={ this.handleInputChange }  className="w-full text-sm text-white transition border border-transparent focus:outline-none focus:border-indigo placeholder-white rounded bg-indigo-medium py-1 px-2 pl-10 appearance-none leading-normal ds-input" />
                 { this.state.open && (
                     <ul className='search-result' >
-                        { books && books.map(item => {
+                        { books && !err &&  books.map(item => {
                             return <Searchitem book={ item } key={item.id} />
                         }) }
                        { 

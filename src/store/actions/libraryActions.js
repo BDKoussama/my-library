@@ -9,9 +9,19 @@ export const addBookToLibrary = (list) => {
     }
 }
 
-
 export  const closeAlert = () => {
     return (dispatch , getState) => {
         dispatch({ type : 'CLOSE_ALERT' })
+    }
+}
+
+export const deleteBook = (list , id) => {
+    console.log(list , id);
+    return (dispatch, getState) => {
+        if(list === 'library'){
+            dispatch({ type : 'DELETE_BOOK_FROM_LIBRARY', id: id });
+        }else{
+            dispatch({ type : 'DELETE_BOOK_FROM_WISHLIST' , id: id });
+        }
     }
 }
