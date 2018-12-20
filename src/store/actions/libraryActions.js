@@ -1,10 +1,12 @@
-export const addBookToLibrary = (list) => {
+export const addBookToLibrary = (list,id) => {
+    console.log(id);
     return ( dispatch , getState ) => {
-        const book = getState().book.selectedBook;
+        const book = getState().search.books.filter(item => item.id == id);
+        console.log(book);
         if(list === 'library'){
-            dispatch({ type : 'BOOK_ADDED_TO_LIBRARY' , payload : book })
+            dispatch({ type : 'BOOK_ADDED_TO_LIBRARY' , payload : book[0] })
         }else{
-            dispatch({ type : 'BOOK_ADDED_TO_WISHLIST' , payload : book })
+            dispatch({ type : 'BOOK_ADDED_TO_WISHLIST' , payload : book[0] })
         }
     }
 }

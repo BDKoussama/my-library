@@ -20,7 +20,7 @@ const Main = (props) => {
           <div label="Library">
           { library && <Library library = { library }/> }
           </div>
-          <div label="Picks for you">
+          <div label="Picks for you" >
           { book && <Picks picks={search}/>}
           </div>
           <div label='stats'>

@@ -13,7 +13,7 @@ class BookDetail extends Component {
     }
 
     addToLibrary = (e) => {
-        this.props.addBookToLibrary(e.target.id);
+        this.props.addBookToLibrary(e.target.id , this.props.selectedBook.id);
         this.setState({
             alertMessage : e.target.id
         })
@@ -69,7 +69,7 @@ const mapStateToProps = ( state ) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        addBookToLibrary: (list) => dispatch(addBookToLibrary(list)),
+        addBookToLibrary: (list,id) => dispatch(addBookToLibrary(list,id)),
         closeAlert: () => dispatch(closeAlert())
     }
 }
