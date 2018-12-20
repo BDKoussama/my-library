@@ -42,8 +42,8 @@ class LibraryBook extends Component {
           <label className={`hidden sm:inline-block rounded-full ${this.state.bgColor} text-white px-2 py-1/2 text-xs`} onClick={ this.handleClick }>{book.readingState}</label>
           <div className={`block sm:${ this.state.stateList ? 'block' : 'hidden' } relative`}>
               <select onChange={ this.handleChange } className="block appearance-none w-full text-sm bg-white border border-grey-light hover:border-grey pl-3 py-1 pr-8 rounded shadow leading-normal focus:outline-none focus:shadow-outline">
+                  <option>Loaned</option>       
                   <option>Reading</option>
-                  <option>Loaned</option>
                   <option >Finished</option>
               </select>
               <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
