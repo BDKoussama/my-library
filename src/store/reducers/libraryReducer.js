@@ -18,6 +18,7 @@ const libraryReducer = (state = { library : [] , wishlist : [] , alert:false , a
             alert : false,
             alreadyExistAlert : false
         }
+        break;
         case 'DELETE_BOOK_FROM_LIBRARY':
             return {
                 ...state,
@@ -30,7 +31,13 @@ const libraryReducer = (state = { library : [] , wishlist : [] , alert:false , a
             wishlist : state.wishlist.filter(item => item.id !== action.id )
         };
         break;
-    break;
+        case 'BOOK_STATE_CHANGED':
+            const { readingState , id } = action.payload
+            return {
+                ...state,
+                library: findBookIndex(id , readingState , state.library)
+            }
+            break;
         default:
         return state ; 
     break;
@@ -43,6 +50,13 @@ const checkBook = (selectedBook , arr) => {
         bookAlreadyInArray =  book.id === selectedBook.id ? true : false
     });
     return bookAlreadyInArray;
+}
+
+const findBookIndex = (id , readingState , arr) => {
+    let newState = [...arr];  
+    let index = newState.findIndex(el => el.id === id );
+    newState[index].readingState = readingState;  
+    return newState;
 }
 
 export default libraryReducer ; 

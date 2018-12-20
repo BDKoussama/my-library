@@ -16,7 +16,8 @@ export const fetchBooks = (title) => {
                             description : description ? description : 'No description',
                             language,
                             pageCount,
-                            publisher
+                            publisher,
+                            readingState: 'loading'
                          } ;
                 }
             dispatch({type : 'FETCH_DATA_SUCCESS' , payload : title === '' ? [] : data})

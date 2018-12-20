@@ -27,3 +27,9 @@ export const deleteBook = (list , id) => {
         }
     }
 }
+
+export const  changeBookState = (readingState , id) => {
+    return (dispatch , getState) => {
+        dispatch({ type : 'BOOK_STATE_CHANGED', payload: { id : id , readingState : readingState } });
+    }   
+}

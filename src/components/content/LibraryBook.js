@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
-import {deleteBook} from '../../store/actions/libraryActions';
+import {deleteBook ,changeBookState } from '../../store/actions/libraryActions';
 
 class LibraryBook extends Component {
     constructor(){
@@ -10,8 +10,7 @@ class LibraryBook extends Component {
         this.handleDeleteBook = this.handleDeleteBook.bind(this);
         this.state = {
             stateList : false,
-            readingState : 'Reading',
-            bgColor : 'libre-bg-yellow'
+            bgColor : 'libre-bg-grey'
         }
     }
     handleClick = () => {
@@ -24,6 +23,7 @@ class LibraryBook extends Component {
             readingState : e.currentTarget.value,
             bgColor : e.currentTarget.value === 'Reading' ? 'libre-bg-yellow' : e.currentTarget.value === 'Loaned' ? 'libre-bg-grey' : 'bg-indigo'
         })
+        this.props.changeBookState(e.currentTarget.value , this.props.book.id);
     }
     handleDeleteBook = () => {
         this.props.deleteBook('library' , this.props.book.id);
@@ -39,7 +39,7 @@ class LibraryBook extends Component {
       <div className="ml-3 sm:ml-0 w-2/3 sm:w-full">
           <p className="text-sm my-2 font-medium sm:font-normal">{ book.title } Aug 2018</p>
           <p className="block sm:hidden mt-2 mb-3 text-sm leading-medium">Eu quo donec pellentesque, urna velit. Ultrices ante iaculis ligula praesent.</p>
-          <label className={`hidden sm:inline-block rounded-full ${this.state.bgColor} text-white px-2 py-1/2 text-xs`} onClick={ this.handleClick }>{this.state.readingState}</label>
+          <label className={`hidden sm:inline-block rounded-full ${this.state.bgColor} text-white px-2 py-1/2 text-xs`} onClick={ this.handleClick }>{book.readingState}</label>
           <div className={`block sm:${ this.state.stateList ? 'block' : 'hidden' } relative`}>
               <select onChange={ this.handleChange } className="block appearance-none w-full text-sm bg-white border border-grey-light hover:border-grey pl-3 py-1 pr-8 rounded shadow leading-normal focus:outline-none focus:shadow-outline">
                   <option>Reading</option>
@@ -60,7 +60,8 @@ class LibraryBook extends Component {
 
 const mapDispatchToState = (dispatch) => {
     return {
-        deleteBook : (list , id) => dispatch(deleteBook(list , id))
+        deleteBook : (list , id) => dispatch(deleteBook(list , id)),
+        changeBookState : (readingState , id) => dispatch(changeBookState(readingState , id))
     }
 }
 
