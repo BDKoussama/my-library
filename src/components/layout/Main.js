@@ -1,6 +1,5 @@
 import React from 'react'
 import Title from '../content/Title';
-import Desktopstats from '../content/Desktopstats';
 import Library from '../content/Library';
 import Picks from '../content/Picks';
 import Tabs from '../Tabs/Tabs';
@@ -22,9 +21,6 @@ const Main = (props) => {
           </div>
           <div label="Picks for you" >
           { book && <Picks picks={search}/>}
-          </div>
-          <div label='stats'>
-            <Desktopstats/>
           </div>
         </Tabs>
 		</div>
